@@ -11,15 +11,29 @@ def normalize(mask, percentile=99):
     return np.clip((mask - vmin) / (vmax - vmin), 0, 1)
 
 
-def show_mask(mask, cmap=None, alpha=None):
-    if cmap == cc.cm.gray and len(mask) > 2:
-        mask = np.sum(mask, axis=2)
-        mask = normalize(mask)
+def make_grayscale(mask):
+    return np.sum(mask, axis=2)
 
-    plt.imshow(mask, cmap=cmap, alpha=alpha, interpolation='lanczos')
-    plt.axis('off')
-    plt.tight_layout()
-    plt.show()
+
+def make_black_white(mask):
+    return make_grayscale(np.abs(mask))
+
+
+def show_mask(mask, title='', cmap=None, alpha=None, norm=True, axis=None):
+    if norm:
+        mask = normalize(mask)
+    if axis is None:
+        plt.imshow(mask, cmap=cmap, alpha=alpha, interpolation='lanczos')
+        if title:
+            plt.title(title)
+        plt.axis('off')
+        plt.tight_layout()
+        plt.show()
+    else:
+        axis.imshow(mask, cmap=cmap, alpha=alpha, interpolation='lanczos')
+        if title:
+            axis.set_title(title)
+        axis.axis('off')
 
 
 def cut_image_with_mask(image_path, mask, percentile=80):
@@ -61,4 +75,4 @@ def load_image(path, size=None, color_mode='RGB', preprocess=True):
     if preprocess:
         transform_list.append(torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]))
     transform = torchvision.transforms.Compose(transform_list)
-    return transform(pil_image)
+    return transform(pil_image).unsqueeze(0)

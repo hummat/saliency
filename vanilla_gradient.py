@@ -9,6 +9,7 @@ class VanillaGradient(SaliencyMask):
         super(VanillaGradient, self).__init__(model)
 
     def get_mask(self, image_tensor, target_class=None):
+        image_tensor = image_tensor.clone()
         image_tensor.requires_grad = True
         image_tensor.retain_grad()
 
