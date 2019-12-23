@@ -37,7 +37,7 @@ def show_mask(mask, title='', cmap=None, alpha=None, norm=True, axis=None):
 
 
 def cut_image_with_mask(image_path, mask, title='', percentile=80, axis=None):
-    image = np.moveaxis(load_image(image_path, size=mask.shape[0], preprocess=False).numpy(), 0, -1)
+    image = np.moveaxis(load_image(image_path, size=mask.shape[0], preprocess=False).numpy().squeeze(), 0, -1)
     mask = mask > np.percentile(mask, percentile)
     image[~mask] = 0
 
