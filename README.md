@@ -14,10 +14,10 @@ The methods should work with all models from the [torchvision](https://github.co
 * DenseNet variants
 * Inception/GoogLeNet
 
-In order for 'Guided Backpropagation' and 'Grad-CAM' to work properly with the 'Inception' and 'GoogLeNet' models, they need to by modified slightly, such that all 'ReLus' are modules of the model rather than function calls. See the [iPython notebook]() for details.
+In order for 'Guided Backpropagation' and 'Grad-CAM' to work properly with the 'Inception' and 'GoogLeNet' models, they need to by modified slightly, such that all 'ReLus' are modules of the model rather than function calls. See the [tutorial notebook](https://github.com/hummat/saliency/blob/master/tutorial.ipynb) for details.
     
 ## Examples
-Please have a look at this short [iPython notebook]()
+Please have a look at this short [tutorial notebook](https://github.com/hummat/saliency/blob/master/tutorial.ipynb)
 
 ## Credits
 The implementation follows closely that of the corresponding [TensorFlow saliency](https://github.com/PAIR-code/saliency) repository, reusing its code were applicable (mostly for the XRAI method).
