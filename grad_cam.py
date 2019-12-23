@@ -58,4 +58,5 @@ class GradCam(VanillaGradient):
 
         if resize:
             cam = np.array(Image.fromarray(cam).resize((image_tensor.shape[2], image_tensor.shape[3]), Image.ANTIALIAS))
+        self.gradient = None
         return cam

@@ -36,21 +36,31 @@ def show_mask(mask, title='', cmap=None, alpha=None, norm=True, axis=None):
         axis.axis('off')
 
 
-def cut_image_with_mask(image_path, mask, percentile=80):
+def cut_image_with_mask(image_path, mask, title='', percentile=80, axis=None):
     image = np.moveaxis(load_image(image_path, size=mask.shape[0], preprocess=False).numpy(), 0, -1)
     mask = mask > np.percentile(mask, percentile)
     image[~mask] = 0
 
-    plt.imshow(image, interpolation='lanczos')
-    plt.axis('off')
-    plt.tight_layout()
-    plt.show()
+    if axis is None:
+        plt.imshow(image, interpolation='lanczos')
+        if title:
+            plt.title(title)
+        plt.axis('off')
+        plt.tight_layout()
+        plt.show()
+    else:
+        axis.imshow(image, interpolation='lanczos')
+        if title:
+            axis.set_title(title)
 
 
-def show_mask_on_image(image_path, mask, cmap=cc.cm.bmy, alpha=0.7):
+def show_mask_on_image(image_path, mask, title='', cmap=cc.cm.bmy, alpha=0.7, axis=None):
     image = load_image(image_path, size=mask.shape[0], color_mode='L', preprocess=False).numpy().squeeze()
-    plt.imshow(image, cmap=cc.cm.gray, interpolation='lanczos')
-    show_mask(mask, cmap, alpha)
+    if axis is None:
+        plt.imshow(image, cmap=cc.cm.gray, interpolation='lanczos')
+    else:
+        axis.imshow(image, cmap=cc.cm.gray, interpolation='lanczos')
+    show_mask(mask, title, cmap, alpha, norm=False, axis=axis)
 
 
 def pil_loader(path, color_mode='RGB'):
