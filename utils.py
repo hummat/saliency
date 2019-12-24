@@ -52,6 +52,7 @@ def cut_image_with_mask(image_path, mask, title='', percentile=80, axis=None):
         axis.imshow(image, interpolation='lanczos')
         if title:
             axis.set_title(title)
+        axis.axis('off')
 
 
 def show_mask_on_image(image_path, mask, title='', cmap=cc.cm.bmy, alpha=0.7, axis=None):
