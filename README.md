@@ -38,9 +38,6 @@ For a brief overview on how to use the package, please have a look at this short
 
 ```python
 # Standard imports 
-import numpy as np
-from matplotlib import pyplot as plt
-import colorcet as cc
 import torchvision
 
 # Import desired utils and methods
@@ -48,8 +45,8 @@ from utils import load_image, show_mask
 from guided_backprop import GuidedBackprop
 
 # Load model and image
-model = torchvision.models.googlenet(pretrained=True)
-doberman = load_image('images/doberman.png', size=299)
+model = torchvision.models.resnet50(pretrained=True)
+doberman = load_image('images/doberman.png', size=224)
 
 # Construct a saliency object and compute the saliency mask.
 guided_backprop = GuidedBackprop(model)
