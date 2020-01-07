@@ -11,7 +11,7 @@ class GuidedBackprop(VanillaGradient):
     def update_relus(self):
         def clip_gradient(module, grad_input, grad_output):
             relu_input = self.relu_inputs.pop()
-            return (grad_output[0] * (grad_output[0] > 0.) * (relu_input > 0.),)
+            return (grad_output[0] * (grad_output[0] > 0.).float() * (relu_input > 0.).float(),)
 
         def save_input(module, input, output):
             self.relu_inputs.append(input[0])

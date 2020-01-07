@@ -41,7 +41,7 @@ For a brief overview on how to use the package, please have a look at this short
 import torchvision
 
 # Import desired utils and methods
-from utils import load_image, show_mask
+from ml_utils import load_image, show_mask
 from guided_backprop import GuidedBackprop
 
 # Load model and image
