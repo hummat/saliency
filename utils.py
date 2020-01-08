@@ -24,7 +24,7 @@ def make_black_white(mask):
 def show_mask(mask, title='', cmap=None, alpha=None, norm=True, axis=None):
     if norm:
         mask = normalize(mask)
-        (vmin, vmax) = (-1, 1) if cmap == cc.cm.bkr else (0, 1)
+    (vmin, vmax) = (-1, 1) if cmap == cc.cm.bkr else (0, 1)
     if axis is None:
         plt.imshow(mask, cmap=cmap, alpha=alpha, vmin=vmin, vmax=vmax, interpolation='lanczos')
         if title:
