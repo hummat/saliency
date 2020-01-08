@@ -5,10 +5,12 @@ from PIL import Image
 import torchvision
 
 
-def normalize(mask, percentile=99):
-    vmax = np.percentile(mask, percentile)
-    vmin = np.percentile(mask, 1)
-    return np.clip((mask - vmin) / (vmax - vmin), 0, 1)
+def normalize(mask, vmin=None, vmax=None, percentile=99):
+    if vmax is None:
+        vmax = np.percentile(mask, percentile)
+    if vmin is None:
+        vmin = np.min(mask)
+    return (mask - vmin) / (vmax - vmin + 1e-10)
 
 
 def make_grayscale(mask):
@@ -22,21 +24,22 @@ def make_black_white(mask):
 def show_mask(mask, title='', cmap=None, alpha=None, norm=True, axis=None):
     if norm:
         mask = normalize(mask)
+        (vmin, vmax) = (-1, 1) if cmap == cc.cm.bkr else (0, 1)
     if axis is None:
-        plt.imshow(mask, cmap=cmap, alpha=alpha, interpolation='lanczos')
+        plt.imshow(mask, cmap=cmap, alpha=alpha, vmin=vmin, vmax=vmax, interpolation='lanczos')
         if title:
             plt.title(title)
         plt.axis('off')
         plt.tight_layout()
         plt.show()
     else:
-        axis.imshow(mask, cmap=cmap, alpha=alpha, interpolation='lanczos')
+        axis.imshow(mask, cmap=cmap, alpha=alpha, vmin=vmin, vmax=vmax, interpolation='lanczos')
         if title:
             axis.set_title(title)
         axis.axis('off')
 
 
-def cut_image_with_mask(image_path, mask, title='', percentile=80, axis=None):
+def cut_image_with_mask(image_path, mask, title='', percentile=70, axis=None):
     image = np.moveaxis(load_image(image_path, size=mask.shape[0], preprocess=False).numpy().squeeze(), 0, -1)
     mask = mask > np.percentile(mask, percentile)
     image[~mask] = 0

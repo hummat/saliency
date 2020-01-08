@@ -20,14 +20,13 @@ class VanillaGradient(SaliencyMask):
         logits.backward(target)
         return np.moveaxis(image_tensor.grad.detach().cpu().numpy()[0], 0, -1)
 
-    def get_smoothed_mask(self, image_tensor, target_class=None, samples=25, std=0.1, process=lambda x: x):
+    def get_smoothed_mask(self, image_tensor, target_class=None, samples=25, std=0.15, process=lambda x: x**2):
         std = std * (torch.max(image_tensor) - torch.min(image_tensor)).detach().cpu().numpy()
 
         batch, channels, width, height = image_tensor.size()
         grad_sum = np.zeros((width, height, channels))
-
         for sample in range(samples):
-            noise = torch.normal(0, std, image_tensor.size())
+            noise = torch.empty(image_tensor.size()).normal_(0, std).to(image_tensor.device)
             noise_image = image_tensor + noise
             grad_sum += process(self.get_mask(noise_image, target_class))
         return grad_sum / samples
