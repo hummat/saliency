@@ -1,15 +1,15 @@
 # Saliency Methods
-## Introduction
+## Overview
 This repository contains code for the following saliency techniques:
-* Vanilla Gradients
+### 1. Vanilla Gradients
 ![gradient](images/gradient.png)
-* Guided Backpropogation (with Smoothgrad)
+### 2. Guided Backpropogation (with Smoothgrad)
 ![guided](images/guided_backrop_smoothgrad.png)
-* Integrated Gradients
+### 3. Integrated Gradients
 ![integrated](images/integrated_gradient.png)
-* (Guided) Grad-CAM
+### 4. (Guided) Grad-CAM
 ![gradcam](images/guided_grad_cam.png)
-* XRAI
+### 5. XRAI
 ![xrai](images/xrai.png)
 
 ## Remarks
