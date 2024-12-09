@@ -1,14 +1,16 @@
 # Saliency Methods
-![thumbnail](images/thumbnail.png)
-
 ## Introduction
 This repository contains code for the following saliency techniques:
-* XRAI
-* SmoothGrad
 * Vanilla Gradients
-* Guided Backpropogation
+![gradient](images/gradient.png)
+* Guided Backpropogation (with Smoothgrad)
+![guided](images/guided_backrop_smoothgrad.png)
 * Integrated Gradients
+![integrated](images/integrated_gradient.png)
 * (Guided) Grad-CAM
+![gradcam](images/guided_grad_cam.png)
+* XRAI
+![xrai](images/xrai.png)
 
 ## Remarks
 The methods should work with all models from the [torchvision](https://github.com/pytorch/vision) package. Tested models so far are:
