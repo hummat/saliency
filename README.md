@@ -19,7 +19,7 @@ The methods should work with all models from the [torchvision](https://github.co
 * DenseNet variants
 * Inception/GoogLeNet*
 
-*In order for *Guided Backpropagation* and *Grad-CAM* to work properly with the *Inception* and *GoogLeNet* models, they need to by modified slightly, such that all *ReLUs* are modules of the model rather than function calls.
+\*In order for *Guided Backpropagation* and *Grad-CAM* to work properly with the *Inception* and *GoogLeNet* models, they need to by modified slightly, such that all *ReLUs* are modules of the model rather than function calls.
 
 ```python
 # This class can be found at the very end of inception.py and googlenet.py respectively.
