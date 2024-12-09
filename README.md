@@ -2,15 +2,15 @@
 ## Overview
 This repository contains code for the following saliency techniques:
 ### 1. Vanilla Gradients
-![gradient](images/gradient.png)
+![gradient](https://github.com/hummat/saliency/blob/master/images/gradient.png)
 ### 2. Guided Backpropogation (with Smoothgrad)
-![guided](images/guided_backrop_smoothgrad.png)
+![guided](https://github.com/hummat/saliency/blob/master/images/guided_backrop_smoothgrad.png)
 ### 3. Integrated Gradients
-![integrated](images/integrated_gradient.png)
+![integrated](https://github.com/hummat/saliency/blob/master/images/integrated_gradient.png)
 ### 4. (Guided) Grad-CAM
-![gradcam](images/guided_grad_cam.png)
+![gradcam](https://github.com/hummat/saliency/blob/master/images/guided_grad_cam.png)
 ### 5. XRAI
-![xrai](images/xrai.png)
+![xrai](https://github.com/hummat/saliency/blob/master/images/xrai.png)
 
 ## Remarks
 The methods should work with all models from the [torchvision](https://github.com/pytorch/vision) package. Tested models so far are:
