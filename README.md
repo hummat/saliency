@@ -1,4 +1,6 @@
 # Saliency Methods
+![thumbnail](images/thumbnail.png)
+
 ## Introduction
 This repository contains code for the following saliency techniques:
 * XRAI
